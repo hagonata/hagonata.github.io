@@ -1,64 +1,67 @@
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-areas: 
-      "header header"
-      "nav main"
-      "footer footer";
-  grid-template-columns: 200px 1fr;
+  grid-template-areas:
+    "header header header"
+    "nav main ."
+    "footer footer footer";
+  grid-template-columns: 1fr minmax(auto, 800px) 1fr; /* The middle column is where the main content will go */
   grid-template-rows: auto 1fr auto;
   height: 100vh;
 }
 
 header, footer {
-  grid-area: header;
+  grid-column: 1 / -1; /* Header and footer span all columns */
   background: #333;
   color: white;
   padding: 1rem;
-}
-
-header {
-  grid-area: header;
+  text-align: center;
 }
 
 nav {
   grid-area: nav;
+  padding: 1rem; /* Adjust padding as needed */
   background: #f4f4f4;
-  padding: 1rem;
+  height: 100%; /* If you want the nav to fill the height */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for visual separation */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+}
+
+nav ul li a:hover, nav ul li a.active {
+  background-color: #e7e7e7;
+  border-left: 3px solid #333;
 }
 
 main {
   grid-area: main;
-  padding: 1rem;
+  align-self: start;
 }
 
 footer {
   grid-area: footer;
+  background: #333;
+  color: white;
+  padding: 1rem;
   text-align: center;
 }
 
-aside, main, footer {
-  padding: 20px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li a {
-  text-decoration: none;
-  color: black;
-  display: block;
-  padding: 8px;
-  transition: background-color 0.05s;
-}
-
-ul li a:hover, .breadcrumb a:hover {
-  background-color: #ddd;
+.breadcrumb {
+  font-size: 0.85em;
+  margin-bottom: 1rem;
 }
 
 .breadcrumb a {
@@ -66,29 +69,182 @@ ul li a:hover, .breadcrumb a:hover {
   text-decoration: none;
 }
 
-.breadcrumb {
-  margin-bottom: 1rem;
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
   body {
-      grid-template-areas: 
-          "header"
-          "nav"
-          "main"
-          "footer";
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: 
+      "header"
+      "nav"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  nav {
+    padding: 0;
+  }
+
+  header, main, footer {
+    padding: 10px;
   }
 
   nav ul {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav ul li a {
+    padding: 8px;
+  }
+
+  .breadcrumb {
+    display: none; /* Breadcrumbs are usually not necessary on mobile views */
   }
 }
 
-/* Active page highlighting */
+@media (min-width: 768px) {
+  .content-wrapper {
+    max-width: 800px; /* Or your preferred max width */
+    margin: 0 auto; /* This will center the content wrapper */
+  }
+}
+
+/* Additional styles for large screens */
+@media (min-width: 1024px) {
+  nav {
+    padding-left: 10%; /* Adds padding to the left */
+    padding-right: 10%; /* Adds padding to the right */
+  }
+}
+
+/* Ensure the header is not styled repeatedly in different media queries */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer styling */
+footer {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+/* Typography adjustments */
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+}
+
+/* Post list styles */
+#posts-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+#posts-list li {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+#posts-list li:last-child {
+  border-bottom: none;
+}
+
+#posts-list a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#posts-list a:hover {
+  text-decoration: underline;
+}
+
+/* Post date styles */
+.post-date {
+  display: block;
+  color: #aaa;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+/* Post title styles */
+.post-title {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#posts-list li {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+#posts-list li:last-child {
+  border-bottom: none;
+}
+
+/* Link colors and interactions */
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #0050a0;
+  text-decoration: underline
+}
+
+/* Ensuring the main content has a max-width for readability on very wide screens */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Styling the images to be responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Additional styles for hover effect on the nav links */
+nav ul li a:not(.active):hover {
+  background-color: #e9e9e9;
+  color: #333;
+}
+
+/* Add a slight box-shadow to the navbar for better separation */
+nav {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Style adjustments for the navbar links */
+nav ul li a {
+  font-weight: 400;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+/* Clearer separation between nav items */
+nav ul li + li {
+  border-top: 1px solid #eaeaea;
+}
+
+/* Highlight the current page in the navbar */
 nav ul li a.active {
   background-color: #ddd;
-  font-weight: bold;
+  color: #333;
+  font-weight: 600;
 }
