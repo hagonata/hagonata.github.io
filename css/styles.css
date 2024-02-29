@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,12 +11,6 @@ body {
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-}
-
-.breadcrumb {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-  color: grey;
 }
 
 header, footer {
@@ -59,11 +54,20 @@ ul li a {
   color: black;
   display: block;
   padding: 8px;
-  transition: background-color 0.3s;
+  transition: background-color 0.05s;
 }
 
-ul li a:hover {
+ul li a:hover, .breadcrumb a:hover {
   background-color: #ddd;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 600px) {
@@ -81,18 +85,10 @@ ul li a:hover {
       display: flex;
       flex-direction: column;
   }
+}
 
-  nav ul li a {
-    background-color: transparent; 
-  }
-
-nav ul li a:hover, nav ul li a.active {
-    background-color: #ddd;
-    color: black;
-  }
-
+/* Active page highlighting */
 nav ul li a.active {
-    font-weight: bold;
-  }
-
+  background-color: #ddd;
+  font-weight: bold;
 }
