@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const postsList = document.getElementById('posts-list');
     
     const posts = [
-      { title: "Post about ML 1", url: "post-about-ml-1.html" },
+      { title: "Post about ML 1", url: "/pages/content/post1.html" },
       { title: "My Second Post", url: "my-second-post.html" }
     ];
   
